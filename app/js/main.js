@@ -101,6 +101,48 @@ __webpack_require__.r(__webpack_exports__);
 
 // validateForms('.form-1', rules1, afterForm);
 
+window.addEventListener("DOMContentLoaded", event => {
+  const DOM_card_title = document.querySelector('.card-title');
+  const DOM_card_p = document.querySelector('.card-p');
+  const DOM_card_descr = document.querySelector('.card-descr');
+  const DOM_card_img = document.querySelector('.card-image > img');
+  // console.log('1');
+
+  function fetchData() {
+    fetch('https://api.stavbers.site/city').then(response => response.json()).then(data => getElData(data));
+  }
+  function getElData(data) {
+    data.forEach(el => {
+      addDataToDOM(el);
+    });
+  }
+  function addDataToDOM(data) {
+    console.log(data);
+    const {
+      name,
+      country_code,
+      population,
+      img
+    } = data;
+    DOM_card_title.innerHTML = name;
+    DOM_card_p.innerHTML = country_code;
+    DOM_card_descr.innerHTML = population;
+    DOM_card_img.src = img;
+  }
+  fetchData();
+  function createElPaggination(element) {
+    return `
+      <ul class="pagination">
+      <li class="active"><a href="#!">1</a></li>
+      <li class="waves-effect"><a href="#!">2</a></li>
+      <li class="waves-effect"><a href="#!">3</a></li>
+      <li class="waves-effect"><a href="#!">4</a></li>
+      <li class="waves-effect"><a href="#!">5</a></li>
+      </ul>
+      `;
+  }
+});
+
 /***/ }),
 
 /***/ "./src/js/_vars.js":
