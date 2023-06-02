@@ -1,0 +1,19 @@
+
+.nav-wrapper {
+
+}
+.brand-logo {
+}
+.right {
+}
+.left {
+}
+
+@media (max-width: 575px) {
+  nav ul a:last-child{
+    padding-right: 5px;
+  }
+  nav .brand-logo {
+    font-size: 1.5rem;
+  }
+}
