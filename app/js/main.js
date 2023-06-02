@@ -102,10 +102,6 @@ __webpack_require__.r(__webpack_exports__);
 // validateForms('.form-1', rules1, afterForm);
 
 window.addEventListener("DOMContentLoaded", event => {
-  const DOM_card_title = document.querySelector('.card-title');
-  const DOM_card_p = document.querySelector('.card-p');
-  const DOM_card_descr = document.querySelector('.card-descr');
-  const DOM_card_img = document.querySelector('.card-image > img');
   // console.log('1');
 
   function fetchData() {
@@ -118,29 +114,31 @@ window.addEventListener("DOMContentLoaded", event => {
   }
   function addDataToDOM(data) {
     console.log(data);
+    document.querySelector('.content-row').innerHTML += createDomEl(data);
+  }
+  function createDomEl(data) {
     const {
       name,
       country_code,
       population,
       img
     } = data;
-    DOM_card_title.innerHTML = name;
-    DOM_card_p.innerHTML = country_code;
-    DOM_card_descr.innerHTML = population;
-    DOM_card_img.src = img;
+    return `
+    <div class="col s12 m6 l4">
+    <div class="card">
+      <div class="card-image">
+        <img  src="${img}">
+      </div>
+      <div class="card-content">
+        <span class="card-title">${name}</span>
+        <span class="card-p">${country_code}</span>
+        <p class="card-descr">${population}</p>
+      </div>
+    </div>
+    </div>
+    `;
   }
   fetchData();
-  function createElPaggination(element) {
-    return `
-      <ul class="pagination">
-      <li class="active"><a href="#!">1</a></li>
-      <li class="waves-effect"><a href="#!">2</a></li>
-      <li class="waves-effect"><a href="#!">3</a></li>
-      <li class="waves-effect"><a href="#!">4</a></li>
-      <li class="waves-effect"><a href="#!">5</a></li>
-      </ul>
-      `;
-  }
 });
 
 /***/ }),
