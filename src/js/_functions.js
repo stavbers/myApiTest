@@ -95,15 +95,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   function addDataToDOM(data){
-    console.log(data)
     document.querySelector('.content-row').innerHTML += createDomEl(data)
   }
   
   function createDomEl(data){
-    const {name, country_code, population, img} = data
+    const {id, name, country_code, population, img} = data
     return `
     <div class="col s12 m6 l4">
-    <div class="card">
+    <div class="card" id=${id}>
       <div class="card-image">
         <img  src="${img}">
       </div>
@@ -120,4 +119,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   fetchData()
 
+  var ob={name:"тест", country_code:"444", population:"555", img:"sngngssf", id:"2", };
+
+  fetch('https://stavbers.site/city',
+    {
+      method: 'POST',
+      headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+      body: 'name='+ob.name +'&country_code='+ob.country_code +'&population='+ob.population +'&img='+ob.img +'&id='+ob.id  
+          }
+  )
+  
 });
